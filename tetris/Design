@@ -1,0 +1,64 @@
+Class MainWindow{
+  variables:
+    int score
+    int level
+   objects:
+    QWidget preview_window
+    Qwidget game_board
+  methods:
+    constructor //show the board
+    void get_level
+    void get_score
+    void update_level
+    void update_score
+}
+
+Class GamePlay{
+  timer
+  subclass:
+    Class Block{
+      int position(x,y)
+      int rotaion_state(1,2,3)
+      bool is_fixed
+    }
+  variables:
+  Block current_block
+  methods:
+    show_block_type1~7(position)
+    rotate_block_clockwise
+    rotate_block_counterclockwise
+    move_block_right
+    move_block_left
+    move_block_down
+    move_block_quickdown
+    erase_row
+    check_gameover
+  slot
+    start_game
+    update_everysec
+}
+
+int main(){
+  Class UI
+  if up pressed{GamePlay.start_game}
+  
+  
+  
+  
+}
+
+--------------------------------------------------------
+Class MainWindow{
+ 
+    int score
+    int level
+   objects:
+    QWidget preview_window
+    Qwidget game_board
+  methods:
+    constructor //show the board
+    void get_level
+    void get_score
+    void update_level
+    void update_score
+}
