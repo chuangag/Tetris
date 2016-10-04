@@ -1,11 +1,15 @@
 #include "GameBoard.h"
 
 GameBoard::GameBoard(){
-  for(int i=0;i<10;i++){
-    for(int j=0;j<20;j++){
-      landedBoard[i][j]=0;
-    }
-  }
+	for(int i=0;i<7;i++){
+		defaultBlock[i].y=5;
+	}
+	
+	for(int i=0;i<20;i++){
+		for(int j=0;j<10;j++){
+		  landedBoard[i][j]=0;
+		}
+	}
 }
 
 void KeyPress::keyPressEvent(QKeyEvent *event)

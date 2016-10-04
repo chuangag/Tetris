@@ -57,6 +57,7 @@ private:
   int tempBoard[20][10];//landed blocks + moving blocks
   struct block currentBlock;//data of moving block
   struct block nextBlock;
+  struct block defaultBlock[7];
 }
 
 #endif
