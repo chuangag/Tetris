@@ -36,7 +36,7 @@ signals:
  
 protected:
   void keyPressEvent(QKeyEvent *);
-  void keyReleaseEvent(QKeyEvent *);
+  //void keyReleaseEvent(QKeyEvent *);
   
 private:
   int landedBoard[10][20];//10*20 board

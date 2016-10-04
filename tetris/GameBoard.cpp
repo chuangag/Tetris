@@ -10,16 +10,22 @@ void KeyPress::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key()){
       case Qt::Key_Left:
-	break;
+		tryleft();
+		break;
       case Qt::Key_Right:
-	break;
+		tryright();
+		break;
       case Qt::Key_Up:
-	break;
+		//start?
+		break;
       case Qt::Key_Down:
-	break;
+		trydown();
+		break;
       case Qt::Key_Z:
-	break;
+		tryrotateCounterclock();
+		break;
       case Qt::Key_X:
-	break;
+		tryrotateClock();
+		break;
     }
 }
