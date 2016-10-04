@@ -11,6 +11,13 @@
 
 class QLabel;
 
+struct bound{
+	int right_bound;//offset from currentX to right bound
+	int left_bound;//offset from currentX to left bound
+	int top_bound;
+	int bottom_bound;
+};
+
 class GameBoard : public QFrame
 {
   Q_OBJECT
@@ -44,8 +51,7 @@ private:
   int tempBoard[20][10];//landed blocks + moving blocks
   int currentX;//center's x coordinate
   int currentY;//center's y coordinate
-  int right_bound;//offset from currentX to right bound
-  int left_bound;//offset from currentX to left bound
+  struct bound currentBound;//offset from currentX to bound
   //int currentBlock[4][4];//any blocks can be put in a 4*4 grid
   int nextBlock[4][4];
   int nextBlock_type;
