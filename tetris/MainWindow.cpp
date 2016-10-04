@@ -1,4 +1,4 @@
-#include <QtWidgets>
+//#include <QtWidgets>
 #include <QLayout>
 #include "GameBoard.h"
 #include "MainWindow.h" 

@@ -3,6 +3,9 @@
 
 #include <QFrame>
 #include <QWidget>
+#include <QLabel>
+#include <QtGui>
+
 class QLabel;
 
 class GameBoard;
@@ -14,12 +17,13 @@ public:
   MainWindow();
 private:
   QLabel *createLabel(const QString &text);//reduce repeat process
-  
+ 
   QLabel *nextBlockLabel;
   QLabel *levelLabel;
   QLabel *scoreLabel;
   GameBoard *gameboard;
-  
+ //level slot and score slot
+ //show text function
   
 };
 #endif
