@@ -16,7 +16,7 @@ class GameBoard : public QFrame
 public:
   GameBoard();
   //void renderBoard();
-  int getTempBoard();
+  int** getTempBoard();//return board array
   void trydown();
   void tryleft();
   void tryright();
