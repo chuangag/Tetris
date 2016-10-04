@@ -17,7 +17,7 @@ public:
   MainWindow();
   void renderBoard();
 private:
-  QLabel *createLabel(const QString &text);//reduce repeat process
+  QLabel *createLabel(const QString &text);//reduce repeatitve process
  
   QLabel *nextBlockLabel;
   QLabel *levelLabel;
