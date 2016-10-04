@@ -1,3 +1,5 @@
+#include "GameBoard.h"
+
 GameBoard::GameBoard(){
   for(int i=0;i<10;i++){
     for(int j=0;j<20;j++){
@@ -28,4 +30,31 @@ void KeyPress::keyPressEvent(QKeyEvent *event)
 		tryrotateClock();
 		break;
     }
+}
+
+void GameBoard::getNextBlock(){
+	
+	setNextBlock();
+}
+
+void GameBoard::setNextBlock(){
+	srand(time(0));
+	nextBlock_type=rand()*100%7;
+	//to be continue
+}
+
+void GameBoard::tryleft(){
+	
+}
+
+void GameBoard::tryright(){
+}
+
+void GameBoard::trydown(){
+}
+
+void GameBoard::tryrotateCounterclock(){
+}
+
+void GameBoard::tryrotateClock(){
 }

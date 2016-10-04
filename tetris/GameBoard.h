@@ -29,6 +29,7 @@ public:
   
 public slots:
   void start();
+  void update_blocks();//update status every second
   
 signals:
   void changeScore(int score);
@@ -39,12 +40,13 @@ protected:
   //void keyReleaseEvent(QKeyEvent *);
   
 private:
-  int landedBoard[10][20];//10*20 board
-  int tempBoard[10][20];//landed blocks + moving blocks
+  int landedBoard[20][10];//10*20 board
+  int tempBoard[20][10];//landed blocks + moving blocks
   int currentX;//center's x coordinate
   int currentY;//center's y coordinate
   //int currentBlock[4][4];//any blocks can be put in a 4*4 grid
   int nextBlock[4][4];
+  int nextBlock_type;
 }
 
 #endif
