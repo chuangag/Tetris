@@ -15,6 +15,7 @@ class MainWindow: public QWidget{
 
 public:
   MainWindow();
+  void renderBoard();
 private:
   QLabel *createLabel(const QString &text);//reduce repeat process
  
