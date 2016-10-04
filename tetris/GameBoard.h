@@ -44,6 +44,8 @@ private:
   int tempBoard[20][10];//landed blocks + moving blocks
   int currentX;//center's x coordinate
   int currentY;//center's y coordinate
+  int right_bound;//offset from currentX to right bound
+  int left_bound;//offset from currentX to left bound
   //int currentBlock[4][4];//any blocks can be put in a 4*4 grid
   int nextBlock[4][4];
   int nextBlock_type;

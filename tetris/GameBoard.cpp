@@ -48,13 +48,17 @@ void GameBoard::tryleft(){
 }
 
 void GameBoard::tryright(){
+	
 }
 
 void GameBoard::trydown(){
+	
 }
 
 void GameBoard::tryrotateCounterclock(){
+	
 }
 
 void GameBoard::tryrotateClock(){
+
 }
