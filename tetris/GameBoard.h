@@ -4,6 +4,8 @@
 #include <QBasicTimer>
 #include <QFrame>
 #include <QPointer>
+#include <QWidget>
+#include <QtGui>
 
 #include "GameBlock.h"
 
@@ -31,6 +33,10 @@ public slots:
 signals:
   void changeScore(int score);
   void changeLevel(int level);
+ 
+protected:
+  void keyPressEvent(QKeyEvent *);
+  void keyReleaseEvent(QKeyEvent *);
   
 private:
   int landedBoard[10][20];//10*20 board
