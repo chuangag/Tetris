@@ -44,19 +44,19 @@ void GameBoard::setNextBlock(){
 }
 
 void GameBoard::tryleft(){
-	
+	//reminder: change the direction code of block
 }
 
 void GameBoard::tryright(){
-	
+	//reminder: change the direction code of block
 }
 
 void GameBoard::trydown(){
-	
+	//reminder: change the direction code of block
 }
 
 void GameBoard::tryrotateCounterclock(){
-	
+	//reminder: change the direction code of block
 }
 
 void GameBoard::tryrotateClock(){

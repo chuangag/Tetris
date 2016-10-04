@@ -11,11 +11,19 @@
 
 class QLabel;
 
-struct bound{
-	int right;//offset from currentX to right bound
-	int left;//offset from currentX to left bound
-	int top;
-	int bottom;
+struct block{
+	/* Direction code:
+	 * 0: End of Direction code
+	 * 1: Left
+	 * 2: Right
+	 * 3: Up
+	 * 4: Down
+	 */
+	int to_start_point[2];
+	int track[5];
+	int type;//From 1 to 7
+	int x;//center's x coordinate
+	int y;//center's y coordinate
 };
 
 class GameBoard : public QFrame
@@ -24,7 +32,6 @@ class GameBoard : public QFrame
   
 public:
   GameBoard();
-  //void renderBoard();
   int** getTempBoard();//return board array
   void trydown();
   void tryleft();
@@ -44,16 +51,12 @@ signals:
  
 protected:
   void keyPressEvent(QKeyEvent *);
-  //void keyReleaseEvent(QKeyEvent *);
   
 private:
   int landedBoard[20][10];//10*20 board
   int tempBoard[20][10];//landed blocks + moving blocks
-  int currentX;//center's x coordinate
-  int currentY;//center's y coordinate
-  struct bound currentBound;//offset from currentX to bound
-  int nextBlock[4][4];
-  int nextBlock_type;
+  struct block currentBlock;//data of moving block
+  struct block nextBlock;
 }
 
 #endif
