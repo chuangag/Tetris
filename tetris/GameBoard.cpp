@@ -228,27 +228,29 @@ void GameBoard::update_blocks(){
 		if(successful){
 			combo++;
 			//then move down all the line
-			for(int j=0;j<20;j++){
+			for(int j=i-1;j>0;j--){
+				for(int k=0;k<10;k++){
+					landedBoard[j+1][k]=landedBoard[j][k];
+				}
+				for(int k=0;k<10;k++){
+					landedBoard[0][k]=0;
+				}
+				i--;//stay here and check again
 			}
-			i--;//stay here and check again
 		}
 	}
 	if(combo){
-		score
+		score+=10*combo*combo;
 		//emit score change signal
 	}
 	
 	//second check if the player fail the game
-	successful=1;
 	for(int i=0;i<2 && successful;i++){
 		for(int j=0;j<10;j++){
-			if(
+			if(landedBoard[i][j]){
+				//emit game fail signal
+				return;
 		}
-	}
-	if(!succesful){
-		//emit game fail signal
-		//to be added
-		return;
 	}
 	
 	//then move down the block
@@ -280,4 +282,8 @@ void GameBoard::update_blocks(){
 	currentBlock=nextBlock;
 	srand(time(0));
 	nextBlock=defaultBlock[rand()*100%7];
+}
+
+long GameBoard::getScore(){
+	return score;
 }
