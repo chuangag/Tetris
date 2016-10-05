@@ -4,14 +4,16 @@
 #include "MainWindow.h" 
 
 MainWindow::MainWindow(){
-  gameboard = new GameBoard;
+  //gameboard can be used directly
+  boardLabel = new QLabel(tr("hi"));
   nextBlockLabel = new QLabel;
   levelLabel = new QLabel;
   scoreLabel = new QLabel;
   
   
+  
   QGridLayout *layout = new QGridLayout;
-  layout->addWidget(gameboard,0,0,8,4);
+  layout->addWidget(boardLabel,0,0,8,4);
   layout->addWidget(createLabel("Next:"),1,4,1,2);
   layout->addWidget(nextBlockLabel,2,4,2,2);
   layout->addWidget(createLabel("Level:"),4,4);

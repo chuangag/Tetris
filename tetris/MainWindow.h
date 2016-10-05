@@ -15,14 +15,14 @@ class MainWindow: public QWidget{
 
 public:
   MainWindow();
-  void renderBoard();
+  //void renderBoard();
 private:
   QLabel *createLabel(const QString &text);//reduce repeatitve process
- 
   QLabel *nextBlockLabel;
   QLabel *levelLabel;
   QLabel *scoreLabel;
-  GameBoard *gameboard;
+  GameBoard gameboard;
+  QLabel *boardLabel;
  //level slot and score slot
  //show text function
   
