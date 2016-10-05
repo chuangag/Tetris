@@ -250,9 +250,9 @@ void GameBoard::update_blocks(){
 			if(landedBoard[i][j]){
 				//emit game fail signal
 				return;
+			}
 		}
 	}
-	
 	//then move down the block
 	tempBlock=currentBlock;
 	tempBlock.x++;
