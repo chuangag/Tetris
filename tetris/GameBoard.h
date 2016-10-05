@@ -67,6 +67,6 @@ private:
   struct block nextBlock;
   struct block tempBlock;//the temporary block for trying
   struct block defaultBlock[7];
-}
+};
 
 #endif
