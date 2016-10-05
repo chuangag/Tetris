@@ -7,7 +7,11 @@
 #include <QWidget>
 #include <QtGui>
 
-#include "GameBlock.h"
+#define D_END 0
+#define D_LEFT 1
+#define D_RIGHT 2
+#define D_UP 3
+#define D_DOWN 4
 
 class QLabel;
 
@@ -38,7 +42,6 @@ public:
   void tryright();
   void tryrotateClock();
   void tryrotateCounterclock();
-  void setNextBlock();
   void getNextBlock();
   
 public slots:
@@ -51,12 +54,16 @@ signals:
  
 protected:
   void keyPressEvent(QKeyEvent *);
+  void setNextBlock();
+  void changeDirection(int& d, bool is_clockwise);
+  bool checkDirection(int direction, int& x, int& y);
   
 private:
   int landedBoard[20][10];//10*20 board
   int tempBoard[20][10];//landed blocks + moving blocks
   struct block currentBlock;//data of moving block
   struct block nextBlock;
+  struct block tempBlock;//the temporary block for trying
   struct block defaultBlock[7];
 }
 
