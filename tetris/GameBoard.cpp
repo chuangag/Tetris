@@ -260,7 +260,7 @@ void GameBoard::update_blocks(){
 		currentBlock=tempBlock;
 	}
 	else{
-		i=0;
+		int i=0;
 		while(currentBlock.track[i]!=D_END){
 			switch(currentBlock.track[i]){
 				case D_UP:

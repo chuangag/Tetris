@@ -45,12 +45,12 @@ public:
   long getScore();
   
 public slots:
-  void start();
+  //void start();
   void update_blocks();//update status every second
   
 signals:
-  void changeScore(int score);
-  void changeLevel(int level);
+ // void changeScore(int score);
+  //void changeLevel(int level);
  
 protected:
   void keyPressEvent(QKeyEvent *);
