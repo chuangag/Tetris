@@ -8,15 +8,17 @@ MainWindow::MainWindow(){
   nextBlockLabel = new QLabel;
   levelLabel = new QLabel;
   scoreLabel = new QLabel;
+  /*
   timer = new QTimer(this);
   boardImage.load("penguin.png");
   QPainter qPainter(&boardImage);
-  
+  */
   //QGraphicsScene *graphicBoard;
   //QGraphicsView *viewBoard(graphicBoard);
-  
+  /*
   QObject::connect(timer,SIGNAL(timeout()),this,SLOT(UpdateText()));
-  timer->start(1000/*ms*/,false);
+  timer->start(1000,false);//ms
+  */
   QGridLayout *layout = new QGridLayout;
   layout->addWidget(boardImage,0,0,8,4);
   layout->addWidget(createLabel("Next:"),1,4,1,2);
@@ -27,7 +29,7 @@ MainWindow::MainWindow(){
   layout->addWidget(scoreLabel,6,5);
   
   
-  renderBoard();
+  //renderBoard();
   
   
   
