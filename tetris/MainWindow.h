@@ -17,6 +17,10 @@ class MainWindow: public QWidget{
 public:
   MainWindow();
   //void renderBoard();
+  
+protected:
+  void update_label();
+
 private:
   QLabel *createLabel(const QString &text);//reduce repeatitve process
   QLabel *nextBlockLabel;
@@ -24,6 +28,8 @@ private:
   QLabel *scoreLabel;
   GameBoard gameboard;
   QLabel *boardLabel;
+  QImage ui;
+  QPainter qPainter;
  //level slot and score slot
  //show text function
   
