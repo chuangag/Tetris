@@ -1,5 +1,5 @@
 #include "GameBoard.h"
-
+#include <iostream>
 GameBoard::GameBoard(){
 	//initialize blocks
 	//initialized member: track, to_start_point, y, type
@@ -7,7 +7,8 @@ GameBoard::GameBoard(){
 	//Important: the type is from 1 to 7 while the index of array is from 0 to 6
 	for(int i=0;i<7;i++){
 		defaultBlock[i].track[5]=D_END;
-		defaultBlock[i].y=5;
+		defaultBlock[i].y=4;//start from 0!
+		defaultBlock[i].x=2;
 		defaultBlock[i].type=i+1;
 	}
 	defaultBlock[0].track[0]=D_DOWN;
@@ -45,14 +46,20 @@ GameBoard::GameBoard(){
 	defaultBlock[6].track[2]=D_UP;
 	defaultBlock[6].track[3]=D_DOWN;
 	defaultBlock[6].track[4]=D_RIGHT;
-	//initialize the board
+	//initialize the board and tempBoard
+	tempBoard=new int*[20];
 	for(int i=0;i<20;i++){
+		tempBoard[i]=new int[10];
 		for(int j=0;j<10;j++){
 		  landedBoard[i][j]=0;
 		}
 	}
 	//score
 	score=0;
+	//block
+	srand(time(0));
+	currentBlock=defaultBlock[rand()%7];
+	nextBlock=defaultBlock[rand()%7];
 }
 
 void GameBoard::keyPressEvent(QKeyEvent *event){
@@ -187,31 +194,32 @@ void GameBoard::changeDirection(int& d,bool is_clockwise){
 	}
 }
 
-int** const GameBoard::getTempBoard(){
+int** GameBoard::getTempBoard(){
 	for(int i=0;i<20;i++){
 		for(int j=0;j<10;j++){
 			tempBoard[i][j]=landedBoard[i][j];
 		}
 	}
 	int i=0;
-	while(currentBlock.track[i]!=D_END){
-		switch(currentBlock.track[i]){
+	tempBlock=currentBlock;
+	while(tempBlock.track[i]!=D_END){
+		switch(tempBlock.track[i]){
 			case D_UP:
-				currentBlock.x--;
+				tempBlock.x--;
 				break;
 			case D_DOWN:
-				currentBlock.x++;
+				tempBlock.x++;
 				break;
 			case D_LEFT:
-				currentBlock.y--;
+				tempBlock.y--;
 				break;
 			case D_RIGHT:
-				currentBlock.y++;
+				tempBlock.y++;
 		}
-		tempBoard[currentBlock.x][currentBlock.y]=currentBlock.type;
+		tempBoard[tempBlock.x][tempBlock.y]=tempBlock.type;
 		i++;
 	}
-	return (int** const)tempBoard;
+	return tempBoard;
 }
 
 void GameBoard::update_blocks(){
@@ -261,21 +269,22 @@ void GameBoard::update_blocks(){
 	}
 	else{
 		int i=0;
-		while(currentBlock.track[i]!=D_END){
-			switch(currentBlock.track[i]){
+		tempBlock.x--;
+		while(tempBlock.track[i]!=D_END){
+			switch(tempBlock.track[i]){
 				case D_UP:
-					currentBlock.x--;
+					tempBlock.x--;
 					break;
 				case D_DOWN:
-					currentBlock.x++;
+					tempBlock.x++;
 					break;
 				case D_LEFT:
-					currentBlock.y--;
+					tempBlock.y--;
 					break;
 				case D_RIGHT:
-					currentBlock.y++;
+					tempBlock.y++;
 			}
-			landedBoard[currentBlock.x][currentBlock.y]=currentBlock.type;
+			landedBoard[tempBlock.x][tempBlock.y]=tempBlock.type;
 			i++;
 		}
 	}

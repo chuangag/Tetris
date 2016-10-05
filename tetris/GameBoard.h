@@ -35,7 +35,7 @@ class GameBoard : public QFrame
   
 public:
   GameBoard();
-  int** const getTempBoard();//return board array
+  int** getTempBoard();//return board array
   void trydown();
   void tryleft();
   void tryright();
@@ -59,7 +59,7 @@ protected:
   
 private:
   int landedBoard[20][10];//10*20 board
-  int tempBoard[20][10];//landed blocks + moving blocks
+  int** tempBoard;
   int score;
   int combo;
   bool successful;

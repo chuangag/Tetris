@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QtGui>
+#include <QTimerEvent>
 #include "GameBoard.h"
 
 class QLabel;
@@ -16,10 +17,9 @@ class MainWindow: public QWidget{
 
 public:
   MainWindow();
-  //void renderBoard();
-  
-protected:
-  void update_label();
+
+public slots:
+  void renderBoard();
 
 private:
   QLabel *createLabel(const QString &text);//reduce repeatitve process
@@ -30,6 +30,7 @@ private:
   QLabel *boardLabel;
   QImage ui;
   QPainter qPainter;
+  QTimer *timer;
  //level slot and score slot
  //show text function
   
