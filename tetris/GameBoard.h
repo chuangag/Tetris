@@ -59,6 +59,9 @@ protected:
 private:
   int landedBoard[20][10];//10*20 board
   int tempBoard[20][10];//landed blocks + moving blocks
+  int score;
+  int combo;
+  bool successful;
   struct block currentBlock;//data of moving block
   struct block nextBlock;
   struct block tempBlock;//the temporary block for trying

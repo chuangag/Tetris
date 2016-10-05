@@ -51,6 +51,8 @@ GameBoard::GameBoard(){
 		  landedBoard[i][j]=0;
 		}
 	}
+	//score
+	score=0;
 }
 
 void KeyPress::keyPressEvent(QKeyEvent *event){
@@ -213,6 +215,43 @@ int** const GameBoard::getTempBoard(){
 }
 
 void GameBoard::update_blocks(){
+	//first check if there is blocks to be disappered
+	combo=0;
+	for(int i=0;i<20;i++){
+		successful=true;
+		for(int j=0;j<10;j++){
+			if(!landedBoard[i][j]){
+				successful=false;
+				break;
+			}
+		}
+		if(successful){
+			combo++;
+			//then move down all the line
+			for(int j=0;j<20;j++){
+			}
+			i--;//stay here and check again
+		}
+	}
+	if(combo){
+		score
+		//emit score change signal
+	}
+	
+	//second check if the player fail the game
+	successful=1;
+	for(int i=0;i<2 && successful;i++){
+		for(int j=0;j<10;j++){
+			if(
+		}
+	}
+	if(!succesful){
+		//emit game fail signal
+		//to be added
+		return;
+	}
+	
+	//then move down the block
 	tempBlock=currentBlock;
 	tempBlock.x++;
 	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
