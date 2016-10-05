@@ -23,8 +23,7 @@ struct block{
 	 * 3: Up
 	 * 4: Down
 	 */
-	int to_start_point[2];
-	int track[5];
+	int track[6];
 	int type;//From 1 to 7
 	int x;//center's x coordinate
 	int y;//center's y coordinate
@@ -36,13 +35,13 @@ class GameBoard : public QFrame
   
 public:
   GameBoard();
-  int** getTempBoard();//return board array
+  int** const getTempBoard();//return board array
   void trydown();
   void tryleft();
   void tryright();
   void tryrotateClock();
   void tryrotateCounterclock();
-  void getNextBlock();
+  int getNextBlock();
   
 public slots:
   void start();
@@ -54,9 +53,8 @@ signals:
  
 protected:
   void keyPressEvent(QKeyEvent *);
-  void setNextBlock();
   void changeDirection(int& d, bool is_clockwise);
-  bool checkDirection(int direction, int& x, int& y);
+  bool checkDirection(int* direction, int x, int y);//temporary block!
   
 private:
   int landedBoard[20][10];//10*20 board
