@@ -42,7 +42,7 @@ public:
   void tryrotateClock();
   void tryrotateCounterclock();
   int getNextBlock();
-  int getScore();
+  long getScore();
   
 public slots:
   void start();

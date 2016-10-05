@@ -8,5 +8,5 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += GameBoard.h MainWindow.h
-SOURCES += GameBoard.cpp main.cpp MainWindow.cpp
+HEADERS +=  GameBoard.h MainWindow.h
+SOURCES +=  GameBoard.cpp main.cpp MainWindow.cpp

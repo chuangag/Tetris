@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QtGui>
+#include "GameBoard.h"
 
 class QLabel;
 

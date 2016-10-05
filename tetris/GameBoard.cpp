@@ -55,7 +55,7 @@ GameBoard::GameBoard(){
 	score=0;
 }
 
-void KeyPress::keyPressEvent(QKeyEvent *event){
+void GameBoard::keyPressEvent(QKeyEvent *event){
     switch(event->key()){
       case Qt::Key_Left:
 		tryleft();
@@ -85,7 +85,7 @@ int GameBoard::getNextBlock(){
 void GameBoard::tryleft(){
 	tempBlock=currentBlock;
 	tempBlock.y--;
-	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
+	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
 	//to be added: emit a signal for UI to repaint
@@ -94,7 +94,7 @@ void GameBoard::tryleft(){
 void GameBoard::tryright(){
 	tempBlock=currentBlock;
 	tempBlock.y++;
-	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
+	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
 	//to be added: emit a signal for UI to repaint
@@ -103,7 +103,7 @@ void GameBoard::tryright(){
 void GameBoard::trydown(){
 	tempBlock=currentBlock;
 	tempBlock.x++;
-	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
+	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
 	//to be added: emit a signal for UI to repaint
@@ -114,7 +114,7 @@ void GameBoard::tryrotateCounterclock(){
 	for(int i=0;i<6;i++){
 		changeDirection(tempBlock.track[i], false);
 	}
-	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
+	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
 	//to be added: emit a signal for UI to repaint
@@ -125,13 +125,13 @@ void GameBoard::tryrotateClock(){
 	for(int i=0;i<6;i++){
 		changeDirection(tempBlock.track[i], true);
 	}
-	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
+	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
 	//to be added: emit a signal for UI to repaint
 }
 
-bool checkDirection(int* direction, int x, int y){
+bool GameBoard::checkDirection(int* direction, int x, int y){
 	int i=0;
 	while(direction[i]!=D_END){
 		switch(direction[i]){
@@ -193,7 +193,7 @@ int** const GameBoard::getTempBoard(){
 			tempBoard[i][j]=landedBoard[i][j];
 		}
 	}
-	i=0;
+	int i=0;
 	while(currentBlock.track[i]!=D_END){
 		switch(currentBlock.track[i]){
 			case D_UP:
@@ -211,7 +211,7 @@ int** const GameBoard::getTempBoard(){
 		tempBoard[currentBlock.x][currentBlock.y]=currentBlock.type;
 		i++;
 	}
-	return tempBoard;
+	return (int** const)tempBoard;
 }
 
 void GameBoard::update_blocks(){
@@ -256,7 +256,7 @@ void GameBoard::update_blocks(){
 	//then move down the block
 	tempBlock=currentBlock;
 	tempBlock.x++;
-	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y){
+	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
 	else{
