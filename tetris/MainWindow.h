@@ -10,8 +10,6 @@
 
 class QLabel;
 
-class GameBoard;
-
 class MainWindow: public QWidget{
   Q_OBJECT
 
@@ -20,6 +18,12 @@ public:
 
 public slots:
   void renderBoard();
+  void fail();
+  void changeScore(int);
+
+protected:
+  void keyPressEvent(QKeyEvent *);
+  void start();
 
 private:
   QLabel *createLabel(const QString &text);//reduce repeatitve process
@@ -31,6 +35,8 @@ private:
   QImage ui;
   QPainter qPainter;
   QTimer *timer;
+  bool game_started;
+  int level;
  //level slot and score slot
  //show text function
   

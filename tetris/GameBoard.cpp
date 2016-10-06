@@ -54,35 +54,6 @@ GameBoard::GameBoard(){
 		  landedBoard[i][j]=0;
 		}
 	}
-	//score
-	score=0;
-	//block
-	srand(time(0));
-	currentBlock=defaultBlock[rand()%7];
-	nextBlock=defaultBlock[rand()%7];
-}
-
-void GameBoard::keyPressEvent(QKeyEvent *event){
-    switch(event->key()){
-      case Qt::Key_Left:
-		tryleft();
-		break;
-      case Qt::Key_Right:
-		tryright();
-		break;
-      case Qt::Key_Up:
-		//start?
-		break;
-      case Qt::Key_Down:
-		trydown();
-		break;
-      case Qt::Key_Z:
-		tryrotateCounterclock();
-		break;
-      case Qt::Key_X:
-		tryrotateClock();
-		break;
-    }
 }
 
 int GameBoard::getNextBlock(){
@@ -95,6 +66,7 @@ void GameBoard::tryleft(){
 	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
+	emit repaint();
 	//to be added: emit a signal for UI to repaint
 }
 
@@ -104,6 +76,7 @@ void GameBoard::tryright(){
 	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
+	emit repaint();
 	//to be added: emit a signal for UI to repaint
 }
 
@@ -112,6 +85,10 @@ void GameBoard::trydown(){
 	tempBlock.x++;
 	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
+		emit repaint();
+	}
+	else{
+		update_blocks();
 	}
 	//to be added: emit a signal for UI to repaint
 }
@@ -124,6 +101,7 @@ void GameBoard::tryrotateCounterclock(){
 	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
+	emit repaint();
 	//to be added: emit a signal for UI to repaint
 }
 
@@ -135,6 +113,7 @@ void GameBoard::tryrotateClock(){
 	if(checkDirection(tempBlock.track, tempBlock.x, tempBlock.y)){
 		currentBlock=tempBlock;
 	}
+	emit repaint();
 	//to be added: emit a signal for UI to repaint
 }
 
@@ -223,6 +202,24 @@ int** GameBoard::getTempBoard(){
 }
 
 void GameBoard::update_blocks(){
+	
+	//check if the player fail the game
+	for(int i=0;i<2;i++){
+		for(int j=0;j<10;j++){
+			if(landedBoard[i][j]){
+				//emit game fail signal
+				for(int k=0;k<20;k++){
+					for(int l=0;l<10;l++){
+						landedBoard[k][l]=0;
+					}
+				}
+				currentBlock.type=0;
+				nextBlock.type=0;
+				emit fail();
+				return;
+			}
+		}
+	}
 	//first check if there is blocks to be disappered
 	combo=0;
 	for(int i=0;i<20;i++){
@@ -249,18 +246,10 @@ void GameBoard::update_blocks(){
 	}
 	if(combo){
 		score+=10*combo*combo;
+		emit changeScore(score);
 		//emit score change signal
 	}
 	
-	//second check if the player fail the game
-	for(int i=0;i<2 && successful;i++){
-		for(int j=0;j<10;j++){
-			if(landedBoard[i][j]){
-				//emit game fail signal
-				return;
-			}
-		}
-	}
 	//then move down the block
 	tempBlock=currentBlock;
 	tempBlock.x++;
@@ -287,12 +276,41 @@ void GameBoard::update_blocks(){
 			landedBoard[tempBlock.x][tempBlock.y]=tempBlock.type;
 			i++;
 		}
+		currentBlock=nextBlock;
+		srand(time(0));
+		nextBlock=defaultBlock[rand()%7];
 	}
-	currentBlock=nextBlock;
-	srand(time(0));
-	nextBlock=defaultBlock[rand()*100%7];
+	//check if the player fail the game
+	for(int i=0;i<2;i++){
+		for(int j=0;j<10;j++){
+			if(landedBoard[i][j]){
+				//emit game fail signal
+				currentBlock.type=0;
+				nextBlock.type=0;
+				emit fail();
+				return;
+			}
+		}
+	}
+	emit repaint();
 }
 
 long GameBoard::getScore(){
 	return score;
+}
+
+void GameBoard::start(){
+	//score
+	score=0;
+	emit changeScore(score);
+	//block
+	srand(time(0));
+	currentBlock=defaultBlock[rand()%7];
+	nextBlock=defaultBlock[rand()%7];
+	//board
+	for(int k=0;k<20;k++){
+		for(int l=0;l<10;l++){
+			landedBoard[k][l]=0;
+		}
+	}
 }
