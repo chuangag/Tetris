@@ -56,9 +56,7 @@ GameBoard::GameBoard(){
 	}
 }
 
-int GameBoard::getNextBlock(){
-	return nextBlock.type;
-}
+
 
 void GameBoard::tryleft(){
 	tempBlock=currentBlock;
@@ -67,7 +65,7 @@ void GameBoard::tryleft(){
 		currentBlock=tempBlock;
 	}
 	emit repaint();
-	//to be added: emit a signal for UI to repaint
+	
 }
 
 void GameBoard::tryright(){
@@ -77,7 +75,6 @@ void GameBoard::tryright(){
 		currentBlock=tempBlock;
 	}
 	emit repaint();
-	//to be added: emit a signal for UI to repaint
 }
 
 void GameBoard::trydown(){
@@ -90,7 +87,6 @@ void GameBoard::trydown(){
 	else{
 		update_blocks();
 	}
-	//to be added: emit a signal for UI to repaint
 }
 
 void GameBoard::tryrotateCounterclock(){
@@ -102,7 +98,6 @@ void GameBoard::tryrotateCounterclock(){
 		currentBlock=tempBlock;
 	}
 	emit repaint();
-	//to be added: emit a signal for UI to repaint
 }
 
 void GameBoard::tryrotateClock(){
@@ -114,7 +109,6 @@ void GameBoard::tryrotateClock(){
 		currentBlock=tempBlock;
 	}
 	emit repaint();
-	//to be added: emit a signal for UI to repaint
 }
 
 bool GameBoard::checkDirection(int* direction, int x, int y){
@@ -292,12 +286,14 @@ void GameBoard::update_blocks(){
 			}
 		}
 	}
+	emit sendNextBlock(nextBlock);
 	emit repaint();
+	
 }
 
-long GameBoard::getScore(){
-	return score;
-}
+//  long GameBoard::getScore(){
+// 	return score;
+// }
 
 void GameBoard::start(){
 	//score

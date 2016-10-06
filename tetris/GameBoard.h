@@ -41,7 +41,7 @@ public:
   void tryright();
   void tryrotateClock();
   void tryrotateCounterclock();
-  int getNextBlock();
+//   struct block getNextBlock();
   long getScore();
   void start();
   
@@ -51,6 +51,7 @@ public slots:
 signals:
   void changeScore(int);
   //void changeLevel(int level);
+  void sendNextBlock(struct block);
   void repaint();
   void fail();
  

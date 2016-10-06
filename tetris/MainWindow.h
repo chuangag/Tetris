@@ -15,9 +15,11 @@ class MainWindow: public QWidget{
 
 public:
   MainWindow();
+  ~MainWindow();
 
 public slots:
   void renderBoard();
+  void setNextBlock(struct block);
   void fail();
   void changeScore(int);
 
@@ -33,10 +35,14 @@ private:
   GameBoard gameboard;
   QLabel *boardLabel;
   QImage ui;
+  QPixmap nxtBlock;
+  
   QPainter qPainter;
+  QPainter nxtPainter;
   QTimer *timer;
   bool game_started;
   int level;
+  int x,y;//for next block
  //level slot and score slot
  //show text function
   
