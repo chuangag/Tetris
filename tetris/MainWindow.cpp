@@ -194,8 +194,8 @@ void MainWindow::fail(){
 }
 
 void MainWindow::changeScore(int s){
-	if(s>=level*100){
-		level++;
+	if((s/100+1)!=level){
+		level=s/100+1;
 		levelLabel->setText(QString::number(level));
 		timer->setInterval(1000-(level-1)*100);
 	}
