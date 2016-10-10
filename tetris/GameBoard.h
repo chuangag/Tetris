@@ -35,14 +35,13 @@ class GameBoard : public QFrame
   
 public:
   GameBoard();
+  ~GameBoard();
   int** getTempBoard();//return board array
   void trydown();
   void tryleft();
   void tryright();
   void tryrotateClock();
   void tryrotateCounterclock();
-//   struct block getNextBlock();
-  long getScore();
   void start();
   
 public slots:
