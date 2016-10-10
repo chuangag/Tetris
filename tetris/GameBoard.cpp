@@ -58,9 +58,9 @@ GameBoard::GameBoard(){
 
 GameBoard::~GameBoard(){
 	for(int i=0;i<20;i++){
-		delete tempBoard[i];
+		delete [] tempBoard[i];
 	}
-	delete tempBoard;
+	delete [] tempBoard;
 }
 
 void GameBoard::tryleft(){
