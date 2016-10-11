@@ -3,7 +3,8 @@ Tetris
 
 Authors
 -------------------------
-Gao Tong
+Gao Tong 
+
 HUANG Chia-Hung 20309206
 
 Description
